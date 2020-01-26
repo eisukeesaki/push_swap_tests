@@ -11,7 +11,7 @@ BOLD="\e[1m";
 #                                 2 element test
 #----------------------------------------------------------------------------
 echo "------------------------------Testing   2 elements------------------------------";
-TEST_CT=5;
+TEST_CT=100;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
@@ -20,12 +20,12 @@ do
 	INSLIST=`./push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
-		:
+		:;
 	else
 		INSLIST="${INSLIST}\n";
 	fi
 	RESULT=`printf "$INSLIST" | ./checker $ARG`;
-	INS_CT=`printf "$INSLIST" | wc -l | bc`
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
 		echo "${RED}$RESULT${EOC}";
@@ -35,11 +35,12 @@ do
 		let "TOT_INS += INS_CT";
 		if [ $INS_CT -le 1 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${GREEN} [PASS]${EOC}\t$INS_CT\tinstructions.";
+			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
 		else
-			echo "${GREEN}$RESULT${EOC}${RED} [FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1)";
+			echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1)";
 			echo "\t\tPassed arguments:";
 			echo "\t\t$ARG\n";
+			let "FAIL_CT += 1";
 		fi
 	fi
 done
@@ -54,7 +55,7 @@ echo "\n\n";
 #                                 3 element test
 #----------------------------------------------------------------------------
 echo "------------------------------Testing   3 elements------------------------------";
-TEST_CT=5;
+TEST_CT=100;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
@@ -68,7 +69,7 @@ do
 		INSLIST="${INSLIST}\n";
 	fi
 	RESULT=`printf "$INSLIST" | ./checker $ARG`;
-	INS_CT=`printf "$INSLIST" | wc -l | bc`
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
 		echo "${RED}$RESULT${EOC}";
@@ -76,13 +77,17 @@ do
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
-		if [ $INS_CT -le 5 ]
+		if [ $INS_CT -le 2 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${GREEN} [PASS]${EOC}\t$INS_CT\tinstructions.";
+			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
+		elif [ $INS_CT -le 5 ]
+		then
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions.";
 		else
-			echo "${GREEN}$RESULT${EOC}${RED} [FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 12)";
+			echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 12)";
 			echo "\t\tPassed arguments:";
 			echo "\t\t$ARG\n";
+			let "FAIL_CT += 1";
 		fi
 	fi
 done
@@ -97,7 +102,7 @@ echo "\n\n";
 #                                 4 element test
 #----------------------------------------------------------------------------
 echo "------------------------------Testing   4 elements------------------------------";
-TEST_CT=5;
+TEST_CT=100;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
@@ -111,7 +116,7 @@ do
 		INSLIST="${INSLIST}\n";
 	fi
 	RESULT=`printf "$INSLIST" | ./checker $ARG`;
-	INS_CT=`printf "$INSLIST" | wc -l | bc`
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
 		echo "${RED}$RESULT${EOC}";
@@ -119,7 +124,7 @@ do
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
-		echo "${GREEN}$RESULT${EOC}${GREEN} [PASS]${EOC}\t$INS_CT\tinstructions.";
+		echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
 	fi
 done
 echo --------------------------------------------------------------------------------
@@ -133,7 +138,7 @@ echo "\n\n";
 #                                 5 element test
 #----------------------------------------------------------------------------
 echo "------------------------------Testing   5 elements------------------------------";
-TEST_CT=5;
+TEST_CT=100;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
@@ -157,11 +162,12 @@ do
 		let "TOT_INS += INS_CT";
 		if [ $INS_CT -le 12 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${GREEN} [PASS]${EOC}\t$INS_CT\tinstructions.";
+			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
 		else
-			echo "${GREEN}$RESULT${EOC}${RED} [FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 12)";
+			echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 12)";
 			echo "\t\tPassed arguments:";
 			echo "\t\t$ARG\n";
+			let "FAIL_CT += 1";
 		fi
 	fi
 done
@@ -191,7 +197,7 @@ do
 		INSLIST="${INSLIST}\n";
 	fi
 	RESULT=`printf "$INSLIST" | ./checker $ARG`;
-	INS_CT=`printf "$INSLIST" | wc -l | bc`
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
 		echo "${RED}$RESULT${EOC}";
@@ -205,22 +211,22 @@ do
 			let "TOT_PTS += 5";
 		elif [ $INS_CT -lt 900 ]
 		then
-			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions. 4 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 4 points.";
 			let "TOT_PTS += 4";
 		elif [ $INS_CT -lt 1100 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${BLUE} [PASS]${EOC}\t$INS_CT\tinstructions. 3 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 3 points.";
 			let "TOT_PTS += 3";
 		elif [ $INS_CT -lt 1300 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${YELLOW} [PASS]${EOC}\t$INS_CT\tinstructions. 2 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 2 points.";
 			let "TOT_PTS += 2";
 		elif [ $INS_CT -lt 1500 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${YELLOW} [PASS]${EOC}\t$INS_CT\tinstructions. 1 point.";
+			echo "${GREEN}$RESULT${EOC} ${YELLOW}[PASS]${EOC}\t$INS_CT\tinstructions. 1 point.";
 			let "TOT_PTS += 1";
 		else
-			echo "${GREEN}$RESULT${EOC}${RED} [FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1499)";
+			echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1499)";
 			echo "\t\tPassed arguments:";
 			echo "\t\t$ARG\n";
 			let "FAIL_CT += 1";
@@ -255,7 +261,7 @@ do
 		INSLIST="${INSLIST}\n";
 	fi
 	RESULT=`printf "$INSLIST" | ./checker $ARG`;
-	INS_CT=`printf "$INSLIST" | wc -l | bc`
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
 		echo "${RED}$RESULT${EOC}";
@@ -269,19 +275,19 @@ do
 			let "TOT_PTS += 5";
 		elif [ $INS_CT -lt 7000 ]
 		then
-			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions. 4 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 4 points.";
 			let "TOT_PTS += 4";
 		elif [ $INS_CT -lt 8500 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${BLUE} [PASS]${EOC}\t$INS_CT\tinstructions. 3 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 3 points.";
 			let "TOT_PTS += 3";
 		elif [ $INS_CT -lt 10000 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${YELLOW} [PASS]${EOC}\t$INS_CT\tinstructions. 2 points.";
+			echo "${GREEN}$RESULT${EOC} ${BLUE}[PASS]${EOC}\t$INS_CT\tinstructions. 2 points.";
 			let "TOT_PTS += 2";
 		elif [ $INS_CT -lt 11500 ]
 		then
-			echo "${GREEN}$RESULT${EOC}${YELLOW} [PASS]${EOC}\t$INS_CT\tinstructions. 1 point.";
+			echo "${GREEN}$RESULT${EOC} ${YELLOW}[PASS]${EOC}\t$INS_CT\tinstructions. 1 point.";
 			let "TOT_PTS += 1";
 		else
 			echo "${GREEN}$RESULT${EOC}${RED} [FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 11499)";
