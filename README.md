@@ -1,5 +1,3 @@
-# push_swap_tests README.md
-
 ![pstest_screenshot](https://i.imgur.com/VaCHzo9.png)
 
 # What is this?
@@ -69,9 +67,6 @@ sh pstest.sh
 
 For the 100 and 500 elements tests, the color of the text `[PASS]` that's printed in the terminal will change depending on the amount of points you earned for each test.
 
-- <span style="color:green">[PASS]</span> : 5 points
-- <span style="color:blue">[PASS]</span> : 4 points
-- <span style="color:blue">[PASS]</span> : 3 points
-- <span style="color:blue">[PASS]</span> : 2 points
-- <span style="color:yellow">[PASS]</span> : 1 point
-- <span style="color:red">[FAIL]</span>   : exceeded the limit of how many instructions you're allowed to generate
+- 5 points : Green
+- 2 to 4 points : Blue
+- 1 point : Yellow
