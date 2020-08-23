@@ -19,8 +19,8 @@ This test script depends on a perfectly functioning `checker` executable.
 
 ```bash
 # executable paths
-CKR_PATH=~/path/to/your/checker/executable;
-PS_PATH=~/path/to/your/push_swap/executable;
+CKR_PATH=/path/to/your/checker/executable;
+PS_PATH=/path/to/your/push_swap/executable;
 ```
 
 # Select which test to run
